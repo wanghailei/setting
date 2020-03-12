@@ -1,0 +1,150 @@
+#caption always "%{= Wk}%-w%{= Bw}%n %t%{-}%+w %-="
+#caption always " %w --- %c:%s"
+caption always " %w"
+#caption always "%3n %t%? @%u%?%? [%h]%?%=%c"
+
+#To have some terminals automatically created and named by default, add a few screen -t lines:
+#screen -t "zsh" 0
+#screen -t "rails" 1
+#screen -t "vim rails" 2
+#screen -t "rails server" 9
+
+#To remove the startup message:
+startup_message off
+
+
+# Informative statusbar
+
+hardstatus off
+
+# statusbar at top:
+#hardstatus firstline 
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%?%= %{g}][%{B} %m-%d %{W} %c %{g}]'
+
+# hardstatus alwayslastline
+# hardstatus alwayslastline '%{= G}[ %{G}%H %{g}][%= %{= w}%?%-Lw%?%{= R}%n*%f %t%?%{= R}(%u)%?%{= w}%+Lw%?%= %{= g}][ %{y}Load: %l %{g}][%{B}%Y-%m-%d %{W}%c:%s %{g}]'
+
+# As of Screen v5 (master branch currently) the escape codes have changed, you could use this instead:
+# ~/.screenrc
+# truecolors on
+# hardstatus off
+# backtick 0 5 5 "/bin/date" '+%Y-%m-%d'
+# backtick 1 5 5 "/bin/date" '+%H:%M'
+# hardstatus alwayslastline '%{#00ff00}[ %H ][%{#ffffff}%= %{7}%?%-Lw%?%{1;0}%{1}(%{15}%n%f%t%?(%u)%?%{1;0}%{1})%{7}%?%+Lw%?%? %=%{#00ff00}][ %{#00a5ff}%{6}%0` %{#ffffff}%{7}%1`%{#00ff00} ]'
+
+
+# /etc/screenrc
+#
+# This is the system wide screenrc.
+# You can use this file to change the default behavior of screen system wide
+# or copy it to ~/.screenrc and use it as a starting point for your own settings.
+
+# ESCAPE - the COMMAND CHARACTER
+# escape ^aa  # default
+# escape ^^^^ # suggested binding (Control-^) for Emacs users
+
+
+# PASSWORD
+# This commands sets the *internal* password for the screen session.
+# WARNING!! If this is set then a "lock" command will only let you in to the
+# session after you enter the user's account password and then *also*
+# the internal password for that session. This gives additional safety but,
+# if you forget the internal password then you cannot resume your session.
+# Use :password to generate a password
+# password ODSJQf.4IJN7E    # "1234"
+
+
+# No annoying audible bell, using "visual bell"
+#vbell on				# default: off
+# vbell_msg "   -- Bell,Bell!! --   "	# default: "Wuff,Wuff!!"
+
+# Automatically detach on hangup.
+# autodetach on				# default: on
+
+# Uses nethack-style messages
+# nethack on				# default: off
+
+# Affects the copying of text regions
+# crlf off				# default: off
+
+# Enable/disable multiuser mode. Standard screen operation is singleuser.
+# In multiuser mode the commands acladd, aclchg, aclgrp and acldel can be used
+# to enable (and disable) other user accessing this screen session.
+# Requires suid-root.
+# multiuser off
+
+# Change default scrollback value for new windows
+# defscrollback 10000			# default: 100
+
+# Define the time that all windows monitored for silence should
+# wait before displaying a message. Default 30 seconds.
+# silencewait 15			# default: 30
+
+# bufferfile:   The file to use for commands
+#               "readbuf" ('<') and  "writebuf" ('>'):
+# bufferfile            $HOME/.screen_exchange
+#
+# hardcopydir:  The directory which contains all hardcopies.
+# hardcopydir           ~/.hardcopy
+# hardcopydir           ~/.screen
+#
+# shell:  Default process started in screen's windows.
+# Makes it possible to use a different shell inside screen
+# than is set as the default login shell.
+# If begins with a '-' character, the shell will be started as a login shell.
+# shell                 zsh
+# shell                 bash
+# shell                 ksh
+# shell -$SHELL
+
+# shellaka '> |tcsh'
+# shelltitle '$ |bash'
+
+# set every new windows hardstatus line to somenthing descriptive
+# defhstatus "screen: ^En (^Et)"
+
+# don't kill window after the process died
+# zombie "^["
+
+# ignore displays that block on output
+# defnonblock on
+
+
+
+# STARTUP SCREENS
+# ===============================================================
+# Defines the time screen delays a new message when one message # is currently displayed. The default is 1 second.
+#  msgminwait 2
+
+# Time a message is displayed if screen is not disturbed by # other activity. The dafault is 5 seconds:
+#  msgwait 2
+
+# Briefly show the version number of this starting # screen session - but only for *one* second:
+#  msgwait 1
+#  version
+
+# Welcome the user:
+# echo "welcome :-)"
+# echo "I love you today."
+
+# Uncomment one/some following lines to automatically let SCREEN start some programs in the given window numbers:
+# screen -t MAIL        0 mutt
+# screen -t EDIT        1 vim
+# screen -t GOOGLE      2 links http://www.google.com
+# screen -t NEWS        3 slrn
+# screen -t WWW         4 links http://www.math.fu-berlin.de/~guckes/
+# screen 5
+# screen 6
+
+# Set the environment variable var to value string. If only var is specified,
+# you'll be prompted to enter a value. If no parameters are specified,
+# you'll be prompted for both variable and value. The environment is
+# inherited by all subsequently forked shells.
+# setenv PROMPT_COMMAND 'echo -n -e "\033k\033\134"'
+
+# Don't you want to start programs which need a DISPLAY ?
+# setenv DISPLAY ''
+
+#     hardstatus alwayslastline
+#     hardstatus string '%{WB}%H %{W}| %{Y}%l %{W}| %?%{w}%-w%?%{+b g}[%{W}%{r}%n%{W} %t%?{%u}%?%{-b g}]%{W}%?%+w%?%=%{G}| %{Y}%d-%m-%Y %c:%s '
+
